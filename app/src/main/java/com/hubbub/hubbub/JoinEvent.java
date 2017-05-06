@@ -54,7 +54,7 @@ public class JoinEvent extends BaseActivity {
         setUpListView();
 
         //TODO(add filtering for starts after time)
-        mDatabase.child("slots").addValueEventListener(
+        mDatabase.child("events").addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,6 +79,7 @@ public class JoinEvent extends BaseActivity {
 
     // TODO: is this super inneficient? Look into that...
     private void addSlotToDay(Event event) {
+
         String dayYearOfSlot = day.format(new Date(event.startAt * 1000));
         ArrayList<Event> slotsInDay;
         if (days.containsKey(dayYearOfSlot)) {

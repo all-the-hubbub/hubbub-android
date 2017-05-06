@@ -49,7 +49,7 @@ public class SlotAdapter extends ArrayAdapter<Event> {
             holder.weekday = (TextView) row.findViewById(R.id.weekday);
             holder.timeStart = (TextView) row.findViewById(R.id.timeStart);
             holder.location = (TextView)row.findViewById(R.id.location);
-            holder.id = (TextView)row.findViewById(R.id.id);
+            holder.state = (TextView)row.findViewById(R.id.state);
             holder.name = (TextView)row.findViewById(R.id.name);
 
             row.setTag(holder);
@@ -65,9 +65,8 @@ public class SlotAdapter extends ArrayAdapter<Event> {
         holder.timeStart.setText(timeAM_PM.format(new Date(item.startAt * 1000)));
 
         holder.location.setText(item.location);
-        holder.id.setText(item.id);
         holder.name.setText(item.name);
-
+        holder.state.setText(item.state);
         return row;
     }
 
@@ -76,7 +75,7 @@ public class SlotAdapter extends ArrayAdapter<Event> {
         public TextView day;
         public TextView weekday;
         public TextView timeStart;
-        public TextView id;
+        public TextView state;
         public TextView location;
         public TextView name;
 

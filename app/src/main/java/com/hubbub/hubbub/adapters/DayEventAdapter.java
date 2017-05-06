@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 /**
  * Created by sgoldblatt on 5/4/17.
  */
@@ -43,6 +45,7 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         DayEventAdapter.DayEventHolder holder = null;
+        HashMap.Entry<String, ArrayList<Event>> item = data.get(position);
 
         if(row == null)
         {
@@ -53,6 +56,8 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
             holder.day = (TextView) row.findViewById(R.id.day);
             holder.weekday = (TextView) row.findViewById(R.id.weekday);
             holder.individual_events = (LinearLayout) row.findViewById(R.id.individual_events);
+            // DO THE INDIVIDUAL EVENTS HERE.
+            dynamicallyAddEvents(holder.individual_events, item.getValue());
 
             row.setTag(holder);
         }
@@ -61,13 +66,10 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
             holder = (DayEventAdapter.DayEventHolder) row.getTag();
         }
 
-        HashMap.Entry<String, ArrayList<Event>> item = data.get(position);
 
         holder.day.setText(day.format(getDate(item)));
         holder.weekday.setText(weekday.format(getDate(item)));
 
-        // DO THE INDIVIDUAL EVENTS HERE.
-        dynamicallyAddEvents(holder.individual_events, item.getValue());
 
         return row;
     }
@@ -80,14 +82,21 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
         for(Event event : events) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             View child = inflater.inflate(R.layout.individual_event, null);
-            TextView individualIdView = (TextView) child.findViewById(R.id.id);
+            TextView individualNameView = (TextView) child.findViewById(R.id.name);
             TextView individualTimeView = (TextView) child.findViewById(R.id.timeStart);
             TextView individualPlaceView = (TextView) child.findViewById(R.id.location);
             CheckBox checkBox = (CheckBox) child.findViewById(R.id.checkbox_meat);
 
-            individualIdView.setText(event.id);
+            individualNameView.setText(event.name);
             individualTimeView.setText(timeAM_PM.format(new Date(event.startAt)));
             individualPlaceView.setText(event.location);
+
+            checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("send of the http request here");
+                }
+            });
 
             layout.addView(child);
         }

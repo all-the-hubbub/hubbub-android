@@ -7,6 +7,7 @@ package com.hubbub.hubbub.models;
 public class Event {
     public long endAt;
     public String id;
+    public String state;
     public String location;
     public String name;
     public long startAt;
