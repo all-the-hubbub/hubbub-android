@@ -1,0 +1,64 @@
+[
+    {
+        "outputFile": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw360dp-v13/values-sw360dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 65,
+                    "endOffset": 116
+                },
+                "from": {
+                    "file": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 65,
+                        "endOffset": 116
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 121,
+                    "endColumn": 62,
+                    "endOffset": 179
+                },
+                "from": {
+                    "file": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 121,
+                        "endColumn": 62,
+                        "endOffset": 179
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 184,
+                    "endColumn": 56,
+                    "endOffset": 236
+                },
+                "from": {
+                    "file": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 184,
+                        "endColumn": 56,
+                        "endOffset": 236
+                    }
+                }
+            }
+        ]
+    }
+]

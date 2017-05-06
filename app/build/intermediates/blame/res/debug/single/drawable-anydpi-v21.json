@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_facebook_white_22dp.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/drawable-anydpi-v21/ic_facebook_white_22dp.xml"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_mail_white_24dp.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/drawable-anydpi-v21/ic_mail_white_24dp.xml"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/b557f46e6277fc68582d310552e3bcdf80a17dd6/output/res/drawable-anydpi-v21/design_ic_visibility.xml"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/b557f46e6277fc68582d310552e3bcdf80a17dd6/output/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_twitter_bird_white_24dp.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/drawable-anydpi-v21/ic_twitter_bird_white_24dp.xml"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_googleg_color_24dp.xml",
+        "source": "/Users/sgoldblatt/.android/build-cache/276c7470fe9547acbf0cbd3fa275f6938f7ed199/output/res/drawable-anydpi-v21/ic_googleg_color_24dp.xml"
+    }
+]

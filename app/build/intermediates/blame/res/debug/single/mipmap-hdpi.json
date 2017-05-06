@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/mipmap-hdpi/hubbub_icon.png",
+        "source": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/src/main/res/mipmap-hdpi/hubbub_icon.png"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/sgoldblatt/AndroidStudioProjects/Hubbub/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    }
+]
