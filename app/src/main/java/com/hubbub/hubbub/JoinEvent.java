@@ -1,7 +1,10 @@
 package com.hubbub.hubbub;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +35,20 @@ public class JoinEvent extends BaseActivity {
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        final MenuItem menuItem = menu.add(Menu.NONE, 1000, Menu.NONE, R.string.button_text_save);
+        MenuItemCompat.setShowAsAction(menuItem, MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        // TODO add the save options here
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
