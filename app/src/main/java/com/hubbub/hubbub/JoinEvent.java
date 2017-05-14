@@ -1,5 +1,6 @@
 package com.hubbub.hubbub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
@@ -46,7 +47,8 @@ public class JoinEvent extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        // TODO add the save options here
+        Intent nextScreen = new Intent(this, MainActivity.class);
+        startActivity(nextScreen);
         return super.onOptionsItemSelected(item);
     }
 
@@ -94,7 +96,7 @@ public class JoinEvent extends BaseActivity {
         );
     }
 
-    // TODO: is this super inneficient? Look into that...
+    // TODO: is this super inefficient? Look into that...
     private void addSlotToDay(Event event) {
 
         String dayYearOfSlot = day.format(new Date(event.startAt * 1000));

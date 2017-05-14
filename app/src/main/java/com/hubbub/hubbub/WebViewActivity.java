@@ -8,6 +8,7 @@ import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,14 +28,13 @@ import okhttp3.Response;
 public class WebViewActivity extends AppCompatActivity {
     WebView webview;
     OkHttpClient client;
-    public static MediaType JSON;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
         client = new OkHttpClient();
-        JSON = MediaType.parse("application/json; charset=utf-8");
         webview = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -42,15 +42,9 @@ public class WebViewActivity extends AppCompatActivity {
         webview.setWebViewClient(new WebViewClient() {
             // TODO: more modern to use WebRequest.
             public boolean shouldOverrideUrlLoading(WebView view, String url){
-                Log.d("Webview", url);
                 if (url.contains(getString(R.string.github_static_host) + "/?code=")) {
                     String githubCode = Uri.parse(url).getQueryParameter("code");
-                    try {
-                        getAccessToken(githubCode);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
+                    requestAccessTokenAndSetResult(githubCode);
                 }
                 return false;
             }
@@ -59,6 +53,7 @@ public class WebViewActivity extends AppCompatActivity {
         webview.loadUrl(createAuthUrl());
     }
 
+    // TODO (this is def a function that exists already)
     private String createAuthUrl() {
         String githubAuth = getString(R.string.github_authorize_html);
         String clientId = getString(R.string.github_id);
@@ -67,7 +62,7 @@ public class WebViewActivity extends AppCompatActivity {
         return githubAuth + "?" + "client_id=" + clientId + "&redirect_uri=" + redirectUrl;
     }
 
-    private void run(String url, String json, Callback callback) throws IOException {
+    private void run(String url, String json, Callback callback) {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)
@@ -76,7 +71,6 @@ public class WebViewActivity extends AppCompatActivity {
 
         Call call = client.newCall(request);
         call.enqueue(callback);
-
     }
 
     private String makeRequestJson(String githubCode) {
@@ -89,6 +83,7 @@ public class WebViewActivity extends AppCompatActivity {
             jObject.put("client_secret", clientSecret);
             jObject.put("code", githubCode);
         } catch (JSONException e) {
+            // TODO (fix this to not throw an error? Like why even)
             e.printStackTrace();
         }
 
@@ -96,10 +91,9 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
 
-    private void getAccessToken(String githubCode) throws IOException {
+    private void requestAccessTokenAndSetResult(String githubCode) {
         String requestUrl = getString(R.string.github_access_token_html);
         String jsonString = makeRequestJson(githubCode);
-
         run(requestUrl, jsonString, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -118,15 +112,19 @@ public class WebViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 Intent data = new Intent();
-                data.putExtra("access_token", getAccessTokenFromString(response.body().string()));
-                setResult(RESULT_OK, data);
+                try {
+                    data.putExtra("access_token", getAccessTokenFromString(response.body().string()));
+                    setResult(RESULT_OK, data);
+                } catch (IOException e) {
+                    Toast.makeText(WebViewActivity.this,
+                            "Error: could not fetch response body/ access_token from github.",
+                            Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_CANCELED);
+                }
                 finish();
-
             }
         });
-
     }
-
 }

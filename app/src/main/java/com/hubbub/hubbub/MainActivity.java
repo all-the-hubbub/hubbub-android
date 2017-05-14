@@ -1,6 +1,7 @@
 package com.hubbub.hubbub;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.PopupMenu;
@@ -25,12 +26,17 @@ import com.hubbub.hubbub.adapters.SlotAdapter;
 import com.hubbub.hubbub.models.Account;
 import com.hubbub.hubbub.models.Event;
 import com.hubbub.hubbub.models.Profile;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
     private TextView mProfileNameText;
     private TextView mProfileHandleText;
+    private CircleImageView mCircleView;
+
     private ListView mUpcomingEvents;
     private ArrayList<Event> slotsArray = new ArrayList<Event>();
     private SlotAdapter adapter;
@@ -73,6 +79,8 @@ public class MainActivity extends BaseActivity {
 
         mProfileNameText = (TextView) findViewById(R.id.profile_full_name);
         mProfileHandleText = (TextView) findViewById(R.id.profile_handle);
+        mCircleView = (CircleImageView) findViewById(R.id.profile_photo);
+
         mUpcomingEvents = (ListView) findViewById(R.id.upcoming_events);
 
         // [START initialize_database_ref]
@@ -95,26 +103,25 @@ public class MainActivity extends BaseActivity {
         super.onStart();
         final String userId = getUid();
         setUpListView();
-
-        mDatabase.child("profiles").child(userId).addListenerForSingleValueEvent(
+        DatabaseReference profileRef = mDatabase.child("profiles").child(userId);
+        profileRef.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user value
                         Profile profile = dataSnapshot.getValue(Profile.class);
 
-                        // [START_EXCLUDE]
-                        if (profile == null) {
-                            // User is null, error out
-                            Log.e(TAG, "User's " + userId + "profile is unexpectedly null");
-                            Toast.makeText(MainActivity.this,
-                                    "Error: could not fetch user.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
+                        if (profile != null) {
                             mProfileNameText.setText(profile.name);
                             mProfileHandleText.setText(profile.handle);
+                            downloadAndSetPhoto(profile.photo);
                         }
-                        // [END_EXCLUDE]
+                    }
+
+                    private void downloadAndSetPhoto(String photo_url) {
+                        Picasso.with(getApplicationContext()).load(photo_url)//download URL
+                            .placeholder(R.drawable.placeholder_bub)//use default image
+                            .error(R.drawable.placeholder_bub)//if failed
+                            .into(mCircleView);
                     }
 
                     @Override

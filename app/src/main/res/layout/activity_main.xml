@@ -28,7 +28,7 @@
                 android:id="@+id/profile_photo"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
-                android:src="@drawable/com_facebook_profile_picture_blank_square" />
+                android:src="@drawable/placeholder_bub" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
