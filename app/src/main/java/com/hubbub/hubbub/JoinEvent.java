@@ -78,6 +78,8 @@ public class JoinEvent extends BaseActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         System.out.println(dataSnapshot.getChildren());
+                        daysOfEvents.clear(); //TODO (since # of Events is small recreating is fine.
+                                             // Would be better to use Firebase's recycle view)
                         for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                             Event event = postSnapshot.getValue(Event.class);
                             addSlotToDay(event);

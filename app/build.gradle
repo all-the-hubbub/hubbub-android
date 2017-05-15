@@ -21,6 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        staging {
+            applicationIdSuffix ".staging"
+        }
+        production {
+            applicationIdSuffix ".production"
+        }
+    }
 }
 
 dependencies {
