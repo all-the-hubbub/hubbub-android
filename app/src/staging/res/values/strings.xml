@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Hubbub</string>
+    <string name="app_name">Hubbub Staging</string>
     <!-- Strings related to OAuth2 -->
     <string name="github_access_token_html">https://github.com/login/oauth/access_token</string>
-    <string name="github_id">077cb2f4568e245a97eb</string>
-    <string name="github_static_host">https://hubbub-159904.firebaseapp.com</string>
+    <string name="github_id">8047073cafed8937f908</string>
+    <string name="github_static_host">https://hubbub-staging.firebaseapp.com</string>
     <string name="github_authorize_html">https://github.com/login/oauth/authorize</string>
-    <string name="hubbub_functions_url">us-central1-hubbub-159904.cloudfunctions.net</string>
-    <string name="beacon_url">https://hubbub-159904.firebaseapp.com/assets/beacon.html</string>
+    <string name="hubbub_functions_url">https://us-central1-hubbub-staging.cloudfunctions.net</string>
+    <string name="beacon_url">https://hubbub-staging.firebaseapp.com/assets/beacon.html</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

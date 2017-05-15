@@ -21,6 +21,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        staging {
+            applicationId defaultConfig.applicationId
+            versionName defaultConfig.versionName + "-staging"
+        }
+
+        production {
+            applicationId defaultConfig.applicationId
+        }
+    }
 }
 
 dependencies {

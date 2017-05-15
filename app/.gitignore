@@ -1,3 +1,4 @@
 /build
 google-services.json
 /src/main/res/values/secrets.xml
+/src/staging/res/values/secrets.xml
