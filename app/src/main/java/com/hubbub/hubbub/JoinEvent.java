@@ -72,17 +72,20 @@ public class JoinEvent extends BaseActivity {
         final String userId = getUid();
         setUpListView();
 
-        //TODO(add filtering for starts after time)
-        mDatabase.child("events").addValueEventListener(
-                new ValueEventListener() {
+        Long currentTime = (new Date()).getTime() / 1000;
+        mDatabase.child("events")
+                .orderByChild("startAt")
+                .startAt(currentTime)
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        System.out.println(dataSnapshot.getChildren());
                         daysOfEvents.clear(); //TODO (since # of Events is small recreating is fine.
                                              // Would be better to use Firebase's recycle view)
                         for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                             Event event = postSnapshot.getValue(Event.class);
-                            addSlotToDay(event);
+                            if (event.state.contains("open")) {
+                                addSlotToDay(event);
+                            }
                         }
 
                         daysOfEvents.addAll(days.entrySet());

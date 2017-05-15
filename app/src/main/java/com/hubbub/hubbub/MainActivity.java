@@ -26,6 +26,7 @@ import com.hubbub.hubbub.models.Profile;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -127,23 +128,22 @@ public class MainActivity extends BaseActivity {
                     }
                 }
         );
-        mDatabase.child("accounts").child(userId).addValueEventListener(
-                new ValueEventListener() {
+
+        //TODO (remove this date)
+        Long currentTime = (new Date("March 18, 2017")).getTime() / 1000;
+        mDatabase.child("accounts/" + userId + "/events")
+                .orderByChild("endAt")
+                .startAt(currentTime)
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // switch to account
-                        Account account = dataSnapshot.getValue(Account.class);
-
-                        if (account == null) {
-                            Log.e(TAG, "User's " + userId + "account is unexpectedly null");
-                            Toast.makeText(MainActivity.this,
-                                    "Error: could not fetch user's account.",
-                                    Toast.LENGTH_SHORT).show();
-                        } if (account.events != null) {
-                            slotsArray.clear();
-                            slotsArray.addAll(account.events.values());
-                            adapter.notifyDataSetChanged();
-                        }
+                        slotsArray.clear();
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            Event event = postSnapshot.getValue(Event.class);
+                            slotsArray.add(event);
+                            }
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override

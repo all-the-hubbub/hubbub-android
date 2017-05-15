@@ -46,7 +46,9 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Hello World!"
+            tools:text="Hello World! this is a really"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textColor="@color/font_dark"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -60,6 +62,8 @@
                 android:id="@+id/timeStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
                 tools:text="10AM"
                 android:textColor="@color/font_dark"/>
 
@@ -75,6 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="location"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textColor="@color/font_dark"/>
         </LinearLayout>
     </LinearLayout>
@@ -85,6 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
+        android:ellipsize="end"
+        android:singleLine="true"
         tools:text="testing..."
         android:textAlignment="center">
 
