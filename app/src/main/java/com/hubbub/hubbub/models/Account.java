@@ -7,6 +7,7 @@ import java.util.HashMap;
 /**
  * Created by sgoldblatt on 5/1/17.
  */
+
 @IgnoreExtraProperties
 public class Account {
     public String handle;

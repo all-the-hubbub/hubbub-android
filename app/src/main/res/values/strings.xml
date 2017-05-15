@@ -6,6 +6,7 @@
     <string name="github_static_host">https://hubbub-staging.firebaseapp.com</string>
     <string name="github_authorize_html">https://github.com/login/oauth/authorize</string>
     <string name="hubbub_functions_url">https://us-central1-hubbub-staging.cloudfunctions.net</string>
+    <string name="beacon_url">https://hubbub-staging.firebaseapp.com/assets/beacon.html</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

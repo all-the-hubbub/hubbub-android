@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="0dp"
-            android:text="17"
+            tools:text="17"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="32sp" />
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="0dp"
-            android:text="Thur"
+            tools:text="Thur"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
@@ -46,7 +46,7 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            tools:text="Hello World!"
             android:textColor="@color/font_dark"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -60,6 +60,7 @@
                 android:id="@+id/timeStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="10AM"
                 android:textColor="@color/font_dark"/>
 
             <TextView
@@ -73,6 +74,7 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="location"
                 android:textColor="@color/font_dark"/>
         </LinearLayout>
     </LinearLayout>
@@ -83,8 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
-        android:text="testing..."
-        android:textAlignment="textEnd">
+        tools:text="testing..."
+        android:textAlignment="center">
 
     </TextView>
 </LinearLayout>

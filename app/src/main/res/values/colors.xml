@@ -3,6 +3,8 @@
     <color name="colorPrimary">#615ec5</color>
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#00BDD6</color>
+    <color name="colorAccentTransparent">#dbf8fa</color>
+    <color name="colorFontTransparent">#0097A7</color>
 
     <color name="font_light">#FFF</color>
     <color name="font_dark">#616161</color>

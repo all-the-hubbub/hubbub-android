@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.hubbub.hubbub.adapters.DayEventAdapter;
+import com.hubbub.hubbub.adapters.JoinEventAdapter;
 import com.hubbub.hubbub.models.Event;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +28,7 @@ public class JoinEvent extends BaseActivity {
             new ArrayList<HashMap.Entry<String, ArrayList<Event>>>();
 
     private HashMap<String, ArrayList<Event>> days = new HashMap<String, ArrayList<Event>>();
-    private DayEventAdapter adapter;
+    private JoinEventAdapter adapter;
     SimpleDateFormat day = new SimpleDateFormat("dd/YY");
 
     private static final String TAG = "JoiningEventsPage";
@@ -115,7 +115,7 @@ public class JoinEvent extends BaseActivity {
     }
 
     private void setUpListView() {
-        adapter = new DayEventAdapter(this, R.layout.day_events, daysOfEvents);
+        adapter = new JoinEventAdapter(this, R.layout.multi_events_view, daysOfEvents);
         mDaysForEvents.setAdapter(adapter);
     }
 

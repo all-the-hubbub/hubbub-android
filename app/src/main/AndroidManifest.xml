@@ -35,6 +35,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".WebViewActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".BeaconViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

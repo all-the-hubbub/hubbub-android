@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -122,8 +121,10 @@ public class WebViewActivity extends AppCompatActivity {
                             "Error: could not fetch response body/ access_token from github.",
                             Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
+                } finally {
+                    response.body().close();
+                    finish();
                 }
-                finish();
             }
         });
     }

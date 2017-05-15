@@ -1,11 +1,8 @@
 package com.hubbub.hubbub;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.hubbub.hubbub.adapters.SlotAdapter;
+import com.hubbub.hubbub.adapters.EventAdapter;
 import com.hubbub.hubbub.models.Account;
 import com.hubbub.hubbub.models.Event;
 import com.hubbub.hubbub.models.Profile;
@@ -39,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
     private ListView mUpcomingEvents;
     private ArrayList<Event> slotsArray = new ArrayList<Event>();
-    private SlotAdapter adapter;
+    private EventAdapter adapter;
 
     private static final String TAG = "MainProfilePageActivity";
 
@@ -158,7 +155,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setUpListView() {
-        adapter = new SlotAdapter(this,
+        adapter = new EventAdapter(this,
                 R.layout.event_view, slotsArray);
         mUpcomingEvents.setAdapter(adapter);
     }

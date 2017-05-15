@@ -2,24 +2,18 @@ package com.hubbub.hubbub.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
-import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.hubbub.hubbub.JoinEvent;
-import com.hubbub.hubbub.MainActivity;
 import com.hubbub.hubbub.R;
 import com.hubbub.hubbub.models.Account;
 import com.hubbub.hubbub.models.Event;
@@ -43,25 +35,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import okhttp3.Call;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.hubbub.hubbub.WebViewActivity.JSON;
+import static java.lang.Thread.sleep;
 
 /**
  * Created by sgoldblatt on 5/4/17.
  */
 
-public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayList<Event>>> {
+public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayList<Event>>> {
     private OkHttpClient client;
     Context context;
     int layoutResourceId;
@@ -80,7 +69,7 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
     SimpleDateFormat timeAM_PM = new SimpleDateFormat("h a");
 
     // HashmapEntry is a single Key Value pair gotten
-    public DayEventAdapter(Context context, int resource, ArrayList<HashMap.Entry<String, ArrayList<Event>>> objects) {
+    public JoinEventAdapter(Context context, int resource, ArrayList<HashMap.Entry<String, ArrayList<Event>>> objects) {
         super(context, resource, objects);
         this.layoutResourceId = resource;
         this.context = context;
@@ -121,14 +110,14 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        DayEventAdapter.DayEventHolder holder = null;
+        JoinEventAdapter.DayEventHolder holder = null;
         HashMap.Entry<String, ArrayList<Event>> item = data.get(position);
 
         if(row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
-            holder = new DayEventAdapter.DayEventHolder();
+            holder = new JoinEventAdapter.DayEventHolder();
             holder.day = (TextView) row.findViewById(R.id.day);
             holder.weekday = (TextView) row.findViewById(R.id.weekday);
             holder.individual_events = (LinearLayout) row.findViewById(R.id.individual_events);
@@ -139,7 +128,7 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
         }
         else
         {
-            holder = (DayEventAdapter.DayEventHolder) row.getTag();
+            holder = (JoinEventAdapter.DayEventHolder) row.getTag();
         }
 
 
@@ -188,7 +177,7 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
     private void dynamicallyAddEvents(LinearLayout layout, ArrayList<Event> events) {
         for(final Event event : events) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            View child = inflater.inflate(R.layout.individual_event, null);
+            View child = inflater.inflate(R.layout.join_individual_event, null);
 
             TextView individualNameView = (TextView) child.findViewById(R.id.name);
             TextView individualTimeView = (TextView) child.findViewById(R.id.timeStart);
@@ -200,9 +189,9 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
             individualPlaceView.setText(event.location);
 
             final boolean[] userInEvent = {eventsUserIsPending.contains(event.id)};
-            Log.d(TAG, "is user in event? " + userInEvent[0]);
+            Log.d(TAG, "userInEvent: " + userInEvent[0]);
             checkBox.setChecked(userInEvent[0]);
-            
+
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -214,12 +203,21 @@ public class DayEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLis
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
+                            Log.d(TAG, response.body().string());
                             if (response.isSuccessful()) {
-                                Log.d(TAG, response.request().toString());
-                                userInEvent[0] = userInEvent[0];
+                                userInEvent[0] = !userInEvent[0];
                             }
                         }
                     });
+
+                    //TODO (this seems janky-- I want to update only after I get the result. maybe switch to loading screen?)
+                    checkBox.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d(TAG, "THIs is running" + userInEvent[0]);
+                            checkBox.setChecked(userInEvent[0]);
+                        }
+                    }, 1500);
                 }
             });
 
