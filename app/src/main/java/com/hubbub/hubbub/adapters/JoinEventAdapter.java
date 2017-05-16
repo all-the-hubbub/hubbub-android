@@ -3,6 +3,7 @@ package com.hubbub.hubbub.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.nfc.Tag;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -177,7 +178,7 @@ public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLi
     private void dynamicallyAddEvents(LinearLayout layout, ArrayList<Event> events) {
         for(final Event event : events) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            View child = inflater.inflate(R.layout.join_individual_event, null);
+            final View child = inflater.inflate(R.layout.join_individual_event, null);
 
             TextView individualNameView = (TextView) child.findViewById(R.id.name);
             TextView individualTimeView = (TextView) child.findViewById(R.id.timeStart);
@@ -203,21 +204,19 @@ public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLi
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Log.d(TAG, response.body().string());
                             if (response.isSuccessful()) {
                                 userInEvent[0] = !userInEvent[0];
                             }
+                            // switch back to main thread to update checkButton
+                            Handler mainHandler = new Handler(context.getMainLooper());
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkBox.setChecked(userInEvent[0]);
+                                }
+                            });
                         }
                     });
-
-                    //TODO (this seems janky-- I want to update only after I get the result. maybe switch to loading screen?)
-                    checkBox.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d(TAG, "THIs is running" + userInEvent[0]);
-                            checkBox.setChecked(userInEvent[0]);
-                        }
-                    }, 1500);
                 }
             });
 

@@ -44,6 +44,7 @@ public class WebViewActivity extends AppCompatActivity {
                 if (url.contains(getString(R.string.github_static_host) + "/?code=")) {
                     String githubCode = Uri.parse(url).getQueryParameter("code");
                     requestAccessTokenAndSetResult(githubCode);
+                    return true;
                 }
                 return false;
             }
