@@ -42,33 +42,26 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
-    }
 
-    // [START on_start_check_user]
-    @Override
-    public void onStart() {
-        super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+        // TODO (is this best in onCreate? that leads to a bit of a UI annoyance)
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-    // [END on_start_check_user]
 
     // rename this function and have it switch to a new screen if there is a user
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Intent nextScreen = new Intent(this, MainActivity.class);
             startActivity(nextScreen);
-        } else {
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
         }
+        showSignInButton(user == null);
     }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.sign_in_button) {
-            v.startAnimation(buttonClick);
             signIn();
         }
     }
@@ -76,9 +69,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     // [START signin]
     private void signIn() {
         Intent signInWebView = new Intent(this, WebViewActivity.class);
+        showSignInButton(false);
         startActivityForResult(signInWebView, RC_GITHUB);
     }
     // [END signin]
+
+    private void showSignInButton(boolean showSignIn) {
+        if (showSignIn) {
+            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.progressBar).setVisibility(View.GONE);
+        }else {
+            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
