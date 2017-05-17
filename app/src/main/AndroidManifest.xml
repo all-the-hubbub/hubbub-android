@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hubbub.hubbub">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -37,6 +38,10 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".BeaconViewActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="23eda98454d1ba76bd09522836dfed6e1ef8cd90"
+            tools:replace="android:value"
+            />
     </application>
-
 </manifest>

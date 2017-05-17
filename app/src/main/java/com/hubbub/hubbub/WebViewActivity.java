@@ -24,7 +24,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
     WebView webview;
     OkHttpClient client;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

@@ -81,5 +81,4 @@
         android:tint="@color/font_light"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
-
 </android.support.design.widget.CoordinatorLayout>

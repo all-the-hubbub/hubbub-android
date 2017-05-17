@@ -87,10 +87,8 @@ public class JoinEvent extends BaseActivity {
                                 addSlotToDay(event);
                             }
                         }
-
                         daysOfEvents.addAll(days.entrySet());
                         adapter.notifyDataSetChanged();
-
                     }
 
                     @Override

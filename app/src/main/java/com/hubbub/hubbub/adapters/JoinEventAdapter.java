@@ -67,7 +67,7 @@ public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLi
 
     SimpleDateFormat day = new SimpleDateFormat("dd");
     SimpleDateFormat weekday = new SimpleDateFormat("EEE");
-    SimpleDateFormat timeAM_PM = new SimpleDateFormat("h a");
+    SimpleDateFormat timeAM_PM = new SimpleDateFormat("h:mm a");
 
     // HashmapEntry is a single Key Value pair gotten
     public JoinEventAdapter(Context context, int resource, ArrayList<HashMap.Entry<String, ArrayList<Event>>> objects) {

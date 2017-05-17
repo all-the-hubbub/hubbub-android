@@ -32,7 +32,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
     ArrayList<Event> data = null;
     SimpleDateFormat day = new SimpleDateFormat("dd");
     SimpleDateFormat weekday = new SimpleDateFormat("EEE");
-    SimpleDateFormat timeAM_PM = new SimpleDateFormat("h a");
+    SimpleDateFormat timeAM_PM = new SimpleDateFormat("h:mm a");
 
     public EventAdapter(Context context, int resource, ArrayList<Event> objects) {
         super(context, resource, objects);
