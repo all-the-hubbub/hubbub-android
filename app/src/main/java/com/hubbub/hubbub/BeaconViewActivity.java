@@ -1,5 +1,6 @@
 package com.hubbub.hubbub;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,5 +49,14 @@ public class BeaconViewActivity extends BaseActivity {
 
         Log.d(TAG, getUrlString());
         webview.loadUrl(getUrlString());
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(BeaconViewActivity.this, MainActivity.class));
+        finish();
+
     }
 }
