@@ -5,6 +5,7 @@
     <string name="github_id">077cb2f4568e245a97eb</string>
     <string name="github_static_host">https://hubbub-159904.firebaseapp.com</string>
     <string name="github_authorize_html">https://github.com/login/oauth/authorize</string>
+    <string name="githubbub_access_token_html">https://hubbub-159904.firebaseapp.com/githubToken</string>
     <string name="hubbub_functions_url">https://us-central1-hubbub-159904.cloudfunctions.net</string>
     <string name="beacon_url">https://hubbub-159904.firebaseapp.com/assets/beacon.html</string>
 

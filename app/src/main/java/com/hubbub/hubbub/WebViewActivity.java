@@ -75,12 +75,8 @@ public class WebViewActivity extends BaseActivity {
 
     private String makeRequestJson(String githubCode) {
         JSONObject jObject = new JSONObject();
-        String clientId = getString(R.string.github_id);
-        String clientSecret = getString(R.string.github_secret);
 
         try {
-            jObject.put("client_id", clientId);
-            jObject.put("client_secret", clientSecret);
             jObject.put("code", githubCode);
         } catch (JSONException e) {
             // TODO (fix this to not throw an error? Like why even)
@@ -92,7 +88,7 @@ public class WebViewActivity extends BaseActivity {
 
 
     private void requestAccessTokenAndSetResult(String githubCode) {
-        String requestUrl = getString(R.string.github_access_token_html);
+        String requestUrl = getString(R.string.githubbub_access_token_html);
         String jsonString = makeRequestJson(githubCode);
         run(requestUrl, jsonString, new Callback() {
             @Override
