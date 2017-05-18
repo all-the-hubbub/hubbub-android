@@ -14,17 +14,17 @@ public class BeaconViewActivity extends BaseActivity {
     private static final String TAG = "BeaconViewActivity";
 
     WebView webview;
-    String eventId;
     String slotId;
-    String slotName;
+    String topicId;
+    String topicName;
 
     private String getUrlString(){
         String staticString = getString(R.string.beacon_url);
         Uri uri = Uri.parse(staticString)
                 .buildUpon()
-                .appendQueryParameter("eventId", eventId)
                 .appendQueryParameter("slotId", slotId)
-                .appendQueryParameter("slotName", slotName)
+                .appendQueryParameter("topicId", topicId)
+                .appendQueryParameter("topicName", topicName)
                 .build();
         return uri.toString();
     }
@@ -33,9 +33,9 @@ public class BeaconViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        eventId = getIntent().getStringExtra("eventId");
-        slotId = getIntent().getStringExtra("slotid");
-        slotName= getIntent().getStringExtra("slotName");
+        slotId = getIntent().getStringExtra("slotId");
+        topicId = getIntent().getStringExtra("topicId");
+        topicName= getIntent().getStringExtra("topicName");
 
         webview = (WebView) findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient() {

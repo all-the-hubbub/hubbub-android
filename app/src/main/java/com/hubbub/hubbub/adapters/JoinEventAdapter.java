@@ -186,7 +186,7 @@ public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLi
             final CheckBox checkBox = (CheckBox) child.findViewById(R.id.checkbox_meat);
 
             individualNameView.setText(event.name);
-            individualTimeView.setText(timeAM_PM.format(new Date(event.startAt)));
+            individualTimeView.setText(timeAM_PM.format(new Date(event.startAt * 1000)));
             individualPlaceView.setText(event.location);
 
             final boolean[] userInEvent = {eventsUserIsPending.contains(event.id)};
@@ -207,6 +207,7 @@ public class JoinEventAdapter extends ArrayAdapter<HashMap.Entry<String, ArrayLi
                             if (response.isSuccessful()) {
                                 userInEvent[0] = !userInEvent[0];
                             }
+                            Log.d(TAG, response.message());
                             // switch back to main thread to update checkButton
                             Handler mainHandler = new Handler(context.getMainLooper());
                             mainHandler.post(new Runnable() {
