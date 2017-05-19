@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -39,6 +40,9 @@ public class BeaconViewActivity extends BaseActivity {
         topicName= getIntent().getStringExtra("topicName");
 
         webview = (WebView) findViewById(R.id.webview);
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
         webview.setWebViewClient(new WebViewClient() {
             // TODO: more modern to use WebRequest.
             public boolean shouldOverrideUrlLoading(WebView view, String url){
